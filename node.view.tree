@@ -650,6 +650,16 @@ $mol_text_span $mol_paragraph
 		^
 		mol_text_type <= type \
 
+$mol_labeler $mol_list
+	rows /
+		<= Label $mol_view
+			minimal_height 32
+			sub <= label /$mol_view_content
+				<= title
+		<= Content $mol_view
+			minimal_height 24
+			sub <= content /
+
 $mol_text_list $mol_text
 	auto_scroll null
 	attr *
@@ -666,14 +676,18 @@ $mol_text_list_item $mol_paragraph
 
 $invite_dict $mol_page
 	title \Rocket Pronunciation
+	Head null
 	body /
-		<= Word $mol_text text \HUMMINGBIRD
-		<= Transcription $mol_text text \hʌ́mɪŋbəːd
-		<= Search $mol_search
-			query => query
+		<= Word $mol_labeler
+			title <= word_label? \
+			content /
+				<= Transcription $mol_text text <= transcription? \
+	foot /
+		<= Search $mol_search query? <=> word? \
 
 $invite_app $mol_book2_catalog
 	menu_title \Приглашения в $mol
 	param \app
+	Placeholder null
 	spreads *
 		dict <= Dict_app $invite_dict

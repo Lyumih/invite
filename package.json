@@ -200,7 +200,8 @@
     "$mol_promise_promise",
     "$mol_embed_youtube",
     "$mol_icon_youtube",
-    "$mol_frame"
+    "$mol_frame",
+    "$mol_labeler"
   ],
   "dependencies": {
     "jsdom": "*",

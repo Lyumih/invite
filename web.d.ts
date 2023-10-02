@@ -2727,6 +2727,19 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_labeler extends $mol_list {
+        rows(): readonly any[];
+        label(): readonly $mol_view_content[];
+        Label(): $mol_view;
+        content(): readonly any[];
+        Content(): $mol_view;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
     class $mol_text_list extends $mol_text {
         auto_scroll(): any;
         attr(): Record<string, any>;
@@ -2745,11 +2758,23 @@ declare namespace $ {
 declare namespace $ {
     class $invite_dict extends $mol_page {
         title(): string;
+        Head(): any;
         body(): readonly any[];
-        Word(): $$.$mol_text;
+        foot(): readonly any[];
+        word_label(next?: any): string;
+        transcription(next?: any): string;
         Transcription(): $$.$mol_text;
-        query(): string;
+        Word(): $mol_labeler;
+        word(next?: any): string;
         Search(): $$.$mol_search;
+    }
+}
+
+declare namespace $.$$ {
+    class $invite_dict extends $.$invite_dict {
+        word(next?: any): string;
+        transcription(next?: any): string;
+        word_label(next?: any): string;
     }
 }
 
@@ -2760,8 +2785,9 @@ declare namespace $ {
     class $invite_app extends $mol_book2_catalog {
         menu_title(): string;
         param(): string;
+        Placeholder(): any;
         spreads(): Record<string, any>;
-        Dict_app(): $invite_dict;
+        Dict_app(): $$.$invite_dict;
     }
 }
 

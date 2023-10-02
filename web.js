@@ -9261,6 +9261,54 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_labeler extends $mol_list {
+        rows() {
+            return [
+                this.Label(),
+                this.Content()
+            ];
+        }
+        label() {
+            return [
+                this.title()
+            ];
+        }
+        Label() {
+            const obj = new this.$.$mol_view();
+            obj.minimal_height = () => 32;
+            obj.sub = () => this.label();
+            return obj;
+        }
+        content() {
+            return [];
+        }
+        Content() {
+            const obj = new this.$.$mol_view();
+            obj.minimal_height = () => 24;
+            obj.sub = () => this.content();
+            return obj;
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $mol_labeler.prototype, "Label", null);
+    __decorate([
+        $mol_mem
+    ], $mol_labeler.prototype, "Content", null);
+    $.$mol_labeler = $mol_labeler;
+})($ || ($ = {}));
+//mol/labeler/-view.tree/labeler.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/labeler/labeler.view.css", "[mol_labeler] {\n\tdisplay: flex;\n\tflex-direction: column;\n\talign-items: stretch;\n\tcursor: inherit;\n}\n\n[mol_labeler_label] {\n\tmin-height: 2rem;\n\tcolor: var(--mol_theme_shade);\n\tpadding: .5rem .75rem 0;\n\tgap: 0 var(--mol_gap_block);\n\tflex-wrap: wrap;\n}\n\n[mol_labeler_content] {\n\tdisplay: flex;\n\tpadding: var(--mol_gap_text);\n}\n");
+})($ || ($ = {}));
+//mol/labeler/-css/labeler.view.css.ts
+;
+"use strict";
+var $;
+(function ($) {
     class $mol_text_list extends $mol_text {
         auto_scroll() {
             return null;
@@ -9314,37 +9362,68 @@ var $;
         title() {
             return "Rocket Pronunciation";
         }
+        Head() {
+            return null;
+        }
         body() {
             return [
-                this.Word(),
-                this.Transcription(),
+                this.Word()
+            ];
+        }
+        foot() {
+            return [
                 this.Search()
             ];
         }
-        Word() {
-            const obj = new this.$.$mol_text();
-            obj.text = () => "HUMMINGBIRD";
-            return obj;
+        word_label(next) {
+            if (next !== undefined)
+                return next;
+            return "";
+        }
+        transcription(next) {
+            if (next !== undefined)
+                return next;
+            return "";
         }
         Transcription() {
             const obj = new this.$.$mol_text();
-            obj.text = () => "hʌ́mɪŋbəːd";
+            obj.text = () => this.transcription();
             return obj;
         }
-        query() {
-            return this.Search().query();
+        Word() {
+            const obj = new this.$.$mol_labeler();
+            obj.title = () => this.word_label();
+            obj.content = () => [
+                this.Transcription()
+            ];
+            return obj;
+        }
+        word(next) {
+            if (next !== undefined)
+                return next;
+            return "";
         }
         Search() {
             const obj = new this.$.$mol_search();
+            obj.query = (next) => this.word(next);
             return obj;
         }
     }
     __decorate([
         $mol_mem
-    ], $invite_dict.prototype, "Word", null);
+    ], $invite_dict.prototype, "word_label", null);
+    __decorate([
+        $mol_mem
+    ], $invite_dict.prototype, "transcription", null);
     __decorate([
         $mol_mem
     ], $invite_dict.prototype, "Transcription", null);
+    __decorate([
+        $mol_mem
+    ], $invite_dict.prototype, "Word", null);
+    __decorate([
+        $mol_mem
+    ], $invite_dict.prototype, "word", null);
     __decorate([
         $mol_mem
     ], $invite_dict.prototype, "Search", null);
@@ -9355,7 +9434,49 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("invite/dict/dict.view.css", "");
+    var $$;
+    (function ($$) {
+        class $invite_dict extends $.$invite_dict {
+            word(next) {
+                return this.$.$mol_state_arg.value('word', next) ?? '';
+            }
+            transcription(next) {
+                if (this.word() === '')
+                    return 'hʌ́mɪŋbəːd';
+                if (this.word()) {
+                    try {
+                        return this.$.$mol_fetch.text('https://aglimakur.beget.app/search?word=' + this.word());
+                    }
+                    catch (error) {
+                        if (error instanceof Promise)
+                            $mol_fail_hidden(error);
+                        return 'Ошибка запроса';
+                    }
+                }
+                return next ?? '';
+            }
+            word_label(next) {
+                return this.word() || 'HUMMINGBIRD';
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $invite_dict.prototype, "word", null);
+        __decorate([
+            $mol_mem
+        ], $invite_dict.prototype, "transcription", null);
+        __decorate([
+            $mol_mem
+        ], $invite_dict.prototype, "word_label", null);
+        $$.$invite_dict = $invite_dict;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//invite/dict/dict.view.ts
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("invite/dict/dict.view.css", "[invite_dict] {\n\tflex: 1;\n}\n\n[invite_dict_body] {\n\tjustify-content: center;\n\talign-items: center;\n}\n\n[invite_dict_word] {\n\talign-items: center;\n\tfont-size: 2rem;\n}\n");
 })($ || ($ = {}));
 //invite/dict/-css/dict.view.css.ts
 ;
@@ -9368,6 +9489,9 @@ var $;
         }
         param() {
             return "app";
+        }
+        Placeholder() {
+            return null;
         }
         spreads() {
             return {
