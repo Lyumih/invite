@@ -1,6 +1,6 @@
 - Список приглашений для разработчиков сделать какое-то приложение на $mol
 - Нужно добавить список, который давал бы ссылку на приложение, значок откуда пришёл, сделано или нет приложение
-$invite_app $mol_book2_catalog
+- $invite_app $mol_book2_catalog
 	menu_title \Приглашения в $mol
 	param \app
 	Placeholder null
@@ -10,3 +10,4 @@ $invite_app $mol_book2_catalog
 	spreads *
 		- https://habr.com/ru/articles/764650/ - Фонетический словарь
 		dict <= Dict_app $invite_dict
+$invite_app $invite_dict
