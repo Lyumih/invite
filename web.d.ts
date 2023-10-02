@@ -68,6 +68,28 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_after_tick extends $mol_object2 {
+        task: () => void;
+        promise: any;
+        cancelled: boolean;
+        constructor(task: () => void);
+        destructor(): void;
+    }
+}
+
+declare namespace $ {
+    var $mol_dom_context: typeof globalThis;
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    function $mol_style_attach_force(): HTMLStyleElement;
+    function $mol_style_attach(id: string, text: string): HTMLStyleElement | null;
+}
+
+declare namespace $ {
     namespace $$ { }
     const $mol_object_field: unique symbol;
     class $mol_object extends $mol_object2 {
@@ -326,23 +348,6 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    var $mol_dom_context: typeof globalThis;
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-    class $mol_after_tick extends $mol_object2 {
-        task: () => void;
-        promise: any;
-        cancelled: boolean;
-        constructor(task: () => void);
-        destructor(): void;
-    }
-}
-
-declare namespace $ {
     class $mol_view_selection extends $mol_object {
         static focused(next?: Element[], notify?: 'notify'): Element[];
     }
@@ -437,11 +442,6 @@ declare namespace $ {
 
 declare namespace $ {
     type $mol_type_pick<Input, Upper> = Pick<Input, $mol_type_keys_extract<Input, Upper>>;
-}
-
-declare namespace $ {
-    function $mol_style_attach_force(): HTMLStyleElement;
-    function $mol_style_attach(id: string, text: string): HTMLStyleElement | null;
 }
 
 declare namespace $ {
@@ -1954,6 +1954,20 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_icon_github_circle extends $mol_icon {
+        path(): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_link_source extends $mol_link {
+        hint(): string;
+        sub(): readonly any[];
+        Icon(): $mol_icon_github_circle;
+    }
+}
+
+declare namespace $ {
     class $mol_stack extends $mol_view {
     }
 }
@@ -2787,9 +2801,14 @@ declare namespace $ {
         menu_title(): string;
         param(): string;
         Placeholder(): any;
+        menu_tools(): readonly any[];
         spreads(): Record<string, any>;
+        GitHub(): $mol_link_source;
         Dict_app(): $$.$invite_dict;
     }
+}
+
+declare namespace $ {
 }
 
 export = $;
