@@ -1,5 +1,6 @@
 $invite_app $mol_book2_catalog
 	menu_title \Приглашения в $mol
 	param \app
+	Placeholder null
 	spreads *
 		dict <= Dict_app $invite_dict

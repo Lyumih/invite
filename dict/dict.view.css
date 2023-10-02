@@ -1,0 +1,13 @@
+[invite_dict] {
+	flex: 1;
+}
+
+[invite_dict_body] {
+	justify-content: center;
+	align-items: center;
+}
+
+[invite_dict_word] {
+	align-items: center;
+	font-size: 2rem;
+}
