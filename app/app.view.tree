@@ -1,2 +1,5 @@
 $invite_app $mol_book2_catalog
-	title \Приглашения в $mol
+	menu_title \Приглашения в $mol
+	param \app
+	spreads *
+		dict <= Dict_app $invite_dict

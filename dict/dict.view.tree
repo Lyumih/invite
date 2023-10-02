@@ -1,0 +1,7 @@
+$invite_dict $mol_page
+	title \Rocket Pronunciation
+	body /
+		<= Word $mol_text text \HUMMINGBIRD
+		<= Transcription $mol_text text \hʌ́mɪŋbəːd
+		<= Search $mol_search
+			query => query
