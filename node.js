@@ -9989,6 +9989,9 @@ var $;
         Head() {
             return null;
         }
+        api_uri() {
+            return "https://raw.githubusercontent.com/Lyumih/invite/master/dict/mock?word=";
+        }
         body() {
             return [
                 this.Word()
@@ -10061,6 +10064,9 @@ var $;
     var $$;
     (function ($$) {
         class $invite_dict extends $.$invite_dict {
+            word_label(next) {
+                return this.word() || 'HUMMINGBIRD';
+            }
             word(next) {
                 return this.$.$mol_state_arg.value('word', next) ?? '';
             }
@@ -10069,7 +10075,7 @@ var $;
                     return 'hʌ́mɪŋbəːd';
                 if (this.word()) {
                     try {
-                        return this.$.$mol_fetch.text('https://aglimakur.beget.app/search?word=' + this.word());
+                        return this.$.$mol_fetch.text(this.api_uri() + this.word());
                     }
                     catch (error) {
                         if (error instanceof Promise)
@@ -10079,19 +10085,16 @@ var $;
                 }
                 return next ?? '';
             }
-            word_label(next) {
-                return this.word() || 'HUMMINGBIRD';
-            }
         }
+        __decorate([
+            $mol_mem
+        ], $invite_dict.prototype, "word_label", null);
         __decorate([
             $mol_mem
         ], $invite_dict.prototype, "word", null);
         __decorate([
             $mol_mem
         ], $invite_dict.prototype, "transcription", null);
-        __decorate([
-            $mol_mem
-        ], $invite_dict.prototype, "word_label", null);
         $$.$invite_dict = $invite_dict;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));

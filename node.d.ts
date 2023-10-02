@@ -2889,6 +2889,7 @@ declare namespace $ {
     class $invite_dict extends $mol_page {
         title(): string;
         Head(): any;
+        api_uri(): string;
         body(): readonly any[];
         foot(): readonly any[];
         word_label(next?: any): string;
@@ -2902,9 +2903,9 @@ declare namespace $ {
 
 declare namespace $.$$ {
     class $invite_dict extends $.$invite_dict {
+        word_label(next?: any): string;
         word(next?: any): string;
         transcription(next?: any): string;
-        word_label(next?: any): string;
     }
 }
 
