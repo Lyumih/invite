@@ -195,7 +195,7 @@
     "$mol_hotkey",
     "$mol_nav",
     "$mol_string",
-    "$mol_icon_cross",
+    "$mol_icon_close",
     "$mol_fetch",
     "$mol_dom_parse"
   ],
