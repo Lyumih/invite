@@ -70,6 +70,7 @@
     "$mol_term",
     "$mol_fail_catch",
     "$mol_fail_log",
+    "$mol_try",
     "$invite_dict",
     "$mol_page",
     "$mol_view_view",
