@@ -214,6 +214,8 @@
     "$mol_string",
     "$mol_icon_close",
     "$mol_fetch",
+    "$mol_rest_code",
+    "$mol_rest",
     "$mol_dom_parse"
   ],
   "dependencies": {
